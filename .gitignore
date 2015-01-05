@@ -1,0 +1,8 @@
+/target/
+/testdb.dat.lck
+/testdb.dat.log
+/testdb.dat.properties
+/testdb.dat.script
+/.settings/
+/.classpath
+/.project
