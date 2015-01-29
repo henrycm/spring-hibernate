@@ -17,8 +17,16 @@ public class DictionaryController {
 	public String translate(@ModelAttribute("st_query") String st_query,
 			@ModelAttribute("lang") String lang, ModelMap model) {
 		RestTemplate rt = new RestTemplate();
-		String resp = rt.getForObject(URL_BASE + "&phrase=" + st_query + "&dest=" + lang,
-				String.class);
+		String resp = rt.getForObject(URL_BASE + "&phrase=" + st_query
+				+ "&dest=" + lang, String.class);
+		return resp;
+	}
+
+	@RequestMapping(value = "/proxy", method = RequestMethod.GET)
+	@ResponseBody
+	public String proxy(@ModelAttribute("st_url") String st_url, ModelMap model) {
+		RestTemplate rt = new RestTemplate();
+		String resp = rt.getForObject(st_url, String.class);
 		return resp;
 	}
 
