@@ -34,4 +34,15 @@ public class Entry implements Serializable {
 		this.meanings = meanings;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		Entry e = (Entry) obj;
+		return this.getWord().equals(e.getWord());
+	}
+
+	@Override
+	public int hashCode() {
+		return getWord().hashCode();
+	}
+
 }

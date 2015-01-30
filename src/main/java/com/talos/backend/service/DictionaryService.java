@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.talos.backend.model.Entry;
 import com.talos.backend.model.Meaning;
@@ -22,7 +21,6 @@ public class DictionaryService {
 	@Resource
 	private MeaningRepository mr;
 
-	@Transactional(readOnly = true)
 	public List<Meaning> search(String word) {
 		Entry e = er.findOne(word);
 		if (e != null) {

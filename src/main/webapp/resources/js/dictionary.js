@@ -3,13 +3,13 @@ var URL_BASE = "dictionary?st_query=";
 var URL_IMG = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
 
 $("#cmdSearch").click(function() {
+	$(".alert").html("");
 	var st_word = $("#txtWord").val();
 
 	$.ajax({
 		url : URL_PROXY + encodeURIComponent(URL_IMG + st_word)
 	}).done(function(data) {
 		var obj = JSON.parse(data);
-		$("#imgs").html("");
 		$.each(obj.responseData.results, function() {
 			$("#imgs").append('<img class="img-rounded" src="' + this.tbUrl +'" />');
 		});		

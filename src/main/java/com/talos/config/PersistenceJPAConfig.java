@@ -37,8 +37,10 @@ public class PersistenceJPAConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:file:db/db_dictionary.dat");
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/db_dictionary");
+		dataSource.setUsername("dic_adm");
+		dataSource.setPassword("dic_adm");
 		return dataSource;
 	}
 
@@ -59,7 +61,7 @@ public class PersistenceJPAConfig {
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "true");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		return properties;
 	}
 }
