@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
 	debug="false">
 	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
-		<param name="Threshold" value="error" />
+		<param name="Threshold" value="info" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L - %m%n" />
 		</layout>
@@ -42,6 +42,11 @@
 		<priority value="debug" />
 	</category>
 
+	<category
+		name="com.talos">
+		<priority value="debug" />
+	</category>
+	
 	<root>
 		<priority value="debug" />
 		<!--<appender-ref ref="springAppender" /> -->

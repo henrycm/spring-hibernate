@@ -38,7 +38,7 @@ public class PersistenceJPAConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:file:testdb.dat");
+		dataSource.setUrl("jdbc:hsqldb:file:db/db_dictionary.dat");
 		return dataSource;
 	}
 

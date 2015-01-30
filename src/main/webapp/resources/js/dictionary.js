@@ -9,6 +9,7 @@ $("#cmdSearch").click(function() {
 		url : URL_PROXY + encodeURIComponent(URL_IMG + st_word)
 	}).done(function(data) {
 		var obj = JSON.parse(data);
+		$("#imgs").html("");
 		$.each(obj.responseData.results, function() {
 			$("#imgs").append('<img class="img-rounded" src="' + this.tbUrl +'" />');
 		});		
