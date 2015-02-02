@@ -32,13 +32,13 @@ public class DictionaryService {
 			return new ArrayList<Meaning>();
 	}
 
-	public synchronized void save(Entry e) {
+	public void save(Entry e) {
 		List<Meaning> l = e.getMeanings();
 		Entry en = er.findOne(e.getWord());
 		if (en == null) {
 			en = e;
 			en.setMeanings(null);
-			er.save(en);
+			en = er.save(en);
 		}
 
 		for (Meaning m : l) {
