@@ -42,11 +42,19 @@
 		<priority value="debug" />
 	</category>
 
-	<category
-		name="com.talos">
+	<category name="log4j.logger.org.hibernate.SQL">
+		<priority value="ERROR" />
+	</category>
+
+	<category name="log4j.logger.org.hibernate.type">
+		<priority value="ERROR" />
+	</category>
+
+
+	<category name="com.dictionary">
 		<priority value="debug" />
 	</category>
-	
+
 	<root>
 		<priority value="debug" />
 		<!--<appender-ref ref="springAppender" /> -->

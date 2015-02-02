@@ -1,4 +1,4 @@
-package com.talos.backend.service;
+package com.dictionary.backend.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.talos.backend.model.Entry;
-import com.talos.backend.model.Meaning;
-import com.talos.backend.repositories.EntryRepository;
-import com.talos.backend.repositories.MeaningRepository;
+import com.dictionary.backend.model.Entry;
+import com.dictionary.backend.model.Meaning;
+import com.dictionary.backend.repositories.EntryRepository;
+import com.dictionary.backend.repositories.MeaningRepository;
 
 @Service
 public class DictionaryService {
@@ -32,7 +32,7 @@ public class DictionaryService {
 			return new ArrayList<Meaning>();
 	}
 
-	public void save(Entry e) {
+	public synchronized void save(Entry e) {
 		List<Meaning> l = e.getMeanings();
 		Entry en = er.findOne(e.getWord());
 		if (en == null) {

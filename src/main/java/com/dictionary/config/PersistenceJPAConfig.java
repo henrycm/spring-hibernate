@@ -1,4 +1,4 @@
-package com.talos.config;
+package com.dictionary.config;
 
 import java.util.Properties;
 
@@ -18,14 +18,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = { "com.talos.backend.repositories" })
+@EnableJpaRepositories(basePackages = { "com.dictionary.backend.repositories" })
 public class PersistenceJPAConfig {
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan(new String[] { "com.talos.backend.model" });
+		factoryBean
+				.setPackagesToScan(new String[] { "com.dictionary.backend.model" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		factoryBean.setJpaVendorAdapter(vendorAdapter);
@@ -37,17 +38,16 @@ public class PersistenceJPAConfig {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/db_dictionary");
-		dataSource.setUsername("dic_adm");
-		dataSource.setPassword("dic_adm");
+		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
+		dataSource.setUrl("jdbc:hsqldb:file:db/db_dictionary.dat");
 		return dataSource;
 	}
 
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(this.entityManagerFactory().getObject());
+		transactionManager.setEntityManagerFactory(this.entityManagerFactory()
+				.getObject());
 		return transactionManager;
 	}
 
@@ -59,9 +59,10 @@ public class PersistenceJPAConfig {
 	private Properties additionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.show_sql", "false");
 		properties.setProperty("hibernate.format_sql", "true");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		properties.setProperty("hibernate.dialect",
+				"org.hibernate.dialect.MySQLDialect");
 		return properties;
 	}
 }

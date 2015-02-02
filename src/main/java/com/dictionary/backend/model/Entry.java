@@ -1,4 +1,4 @@
-package com.talos.backend.model;
+package com.dictionary.backend.model;
 
 import java.io.Serializable;
 import java.util.List;

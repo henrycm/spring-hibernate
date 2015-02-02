@@ -1,4 +1,4 @@
-package com.talos.view;
+package com.dictionary.view;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.talos.backend.model.Entry;
-import com.talos.backend.model.Meaning;
-import com.talos.backend.service.DictionaryService;
+import com.dictionary.backend.model.Entry;
+import com.dictionary.backend.model.Meaning;
+import com.dictionary.backend.service.DictionaryService;
 
 @Controller
 public class DictionaryController {
