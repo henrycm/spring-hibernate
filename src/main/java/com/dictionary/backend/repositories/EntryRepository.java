@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Lock;
 import com.dictionary.backend.model.Entry;
 
 public interface EntryRepository extends JpaRepository<Entry, String> {
-
-	@Lock(LockModeType.PESSIMISTIC_READ)
+	@Lock(LockModeType.READ)
 	public Entry findOne(String id);
 }

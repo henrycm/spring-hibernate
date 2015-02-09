@@ -66,7 +66,7 @@ public class UniqueKeyTest {
 			}
 		}
 
-		logger.debug("All test finished!");
+		logger.debug("All test finished, errors:" + numErrors.get());
 		assertTrue("Num errors saving must be 0", numErrors.get() == 0);
 	}
 }

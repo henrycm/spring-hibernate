@@ -18,7 +18,7 @@ import com.dictionary.backend.repositories.MeaningRepository;
 public class DictionaryService {
 
 	private Logger logger = LoggerFactory.getLogger(DictionaryService.class);
-
+	
 	@Resource
 	private EntryRepository er;
 
@@ -37,16 +37,16 @@ public class DictionaryService {
 	}
 
 	public void save(Entry e) {
-		logger.debug("Saving entity: " + e.getWord());
 		List<Meaning> l = e.getMeanings();
 		Entry en = er.findOne(e.getWord());
 		if (en == null) {
-			logger.debug("Entity not found... creating: " + e.getWord());
 			en = e;
 			en.setMeanings(null);
-			en = er.save(en);
-			logger.debug("After saving:" + en.getWord() + ", hash:"
-					+ en.hashCode());
+			try {
+				en = er.save(en);
+			} catch (Exception e1) {
+				logger.warn(e1.getMessage());
+			}
 		}
 
 		for (Meaning m : l) {
