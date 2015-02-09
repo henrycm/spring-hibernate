@@ -1,5 +1,7 @@
 package test.services;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,9 +30,11 @@ public class UniqueKeyTest {
 	private DictionaryService ds;
 
 	@Test
-	public void testComprador() {
+	public void testNoErrorsWithKey() {
 		String[] langs = { "es", "en", "pt", "fr" };
 		final AtomicInteger numThreads = new AtomicInteger(langs.length);
+		final AtomicInteger numErrors = new AtomicInteger(0);
+
 		for (final String l : langs) {
 			new Thread(new Runnable() {
 				public void run() {
@@ -41,9 +45,15 @@ public class UniqueKeyTest {
 					m.setSource("glosbe");
 					e.setMeanings(Arrays.asList(m));
 					logger.debug("Before saving :" + l);
-					ds.save(e);
-					logger.debug("After saving :" + l);
-					numThreads.decrementAndGet();
+					try {
+						ds.save(e);
+						logger.debug("After saving :" + l);
+					} catch (Exception e1) {
+						logger.error(e1.getMessage());
+						numErrors.incrementAndGet();
+					} finally {
+						numThreads.decrementAndGet();
+					}
 				}
 			}).start();
 		}
@@ -55,5 +65,8 @@ public class UniqueKeyTest {
 				logger.error(e.getMessage());
 			}
 		}
+
+		logger.debug("All test finished!");
+		assertTrue("Num errors saving must be 0", numErrors.get() == 0);
 	}
 }
