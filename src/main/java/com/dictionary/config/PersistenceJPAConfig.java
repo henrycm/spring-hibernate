@@ -39,7 +39,7 @@ public class PersistenceJPAConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:file:db/db_dictionary.dat");
+		dataSource.setUrl("jdbc:hsqldb:mem:db_dictionary");
 		return dataSource;
 	}
 
@@ -62,7 +62,7 @@ public class PersistenceJPAConfig {
 		properties.setProperty("hibernate.show_sql", "false");
 		properties.setProperty("hibernate.format_sql", "true");
 		properties.setProperty("hibernate.dialect",
-				"org.hibernate.dialect.MySQLDialect");
+				"org.hibernate.dialect.HSQLDialect");
 		return properties;
 	}
 }
